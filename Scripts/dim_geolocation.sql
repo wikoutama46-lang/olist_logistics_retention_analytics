@@ -1,0 +1,2 @@
+SELECT *
+FROM geolocation g 
