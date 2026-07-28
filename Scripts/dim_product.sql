@@ -1,6 +1,6 @@
-DROP VIEW dim_product;
-
-CREATE OR REPLACE VIEW dim_product AS
+--DROP VIEW dim_product;
+--
+--CREATE OR REPLACE VIEW dim_product AS
 
 SELECT 
 	p.product_id,
