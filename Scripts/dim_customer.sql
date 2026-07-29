@@ -3,8 +3,8 @@ DROP VIEW dim_customers;
 CREATE OR REPLACE VIEW dim_customers AS
 
 SELECT 
-	c.customer_city,
 	c.customer_unique_id,
-	c.customer_id,
-	c.customer_state
+	MAX(c.customer_city) AS customer_city,
+	MAX(c.customer_state) AS customer_state
 FROM customers c 
+GROUP BY c.customer_unique_id 
