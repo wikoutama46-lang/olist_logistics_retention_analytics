@@ -22,8 +22,8 @@ The analytical techniques used include delivery deviation analysis and the segme
 
 
 ## Insights Deep Dive
-![alt text](/image/image.png)
-![alt text](/image/total%20order.png)
+![alt text](/image/scatter_plot.png)
+![alt text](/image/total_order.png)
 ### Top Three State (SP, RJ, MG)
 1. State SP <br>
 ![alt text](/image/SP.png)
@@ -39,7 +39,7 @@ The analytical techniques used include delivery deviation analysis and the segme
     - Jarak mempengaruhi delivery rate dari customer state RJ, seller yang berbeda state dengan customer memiliki delivery rate yang paling tinggi (14.5%) dengan total order mencapai 5791, disusul local justru memiliki late delivery rate hingga (10.4%) dengan catatan total order hanya 144 dibanding dengan regional berjumlah 415 total order, sehingga ada potensi bias dari sample yang kecil. Meski begitu tetap memerlukan identifikasi lebih lanjut alasan local memiliki late delivery yang lebih tinggi dari regional. 
     ![alt text](/image/Distance%20(RJ).png) 
     - Pada shipping limit days yang diberikan pada seller justru tidak memberikan korelasi apakah deadline yang sempit memberikan late delivery yang besar juga, hasilnya fluktuatif. Late delivery tertinggi tertuju pada 6 hari shipping limit days dengan total order tertinggi (2406), ditemukan jarak interprovincial dan volume dari product  menjadi faktor kontribusi yang cukup besar.
-    ![alt text](/image/limit%20(RJ).png)
+    ![alt text](/image/limit_(RJ).png)
     ![alt text](/image/volume_and_weight_(RJ).png)
 
 ## Recommendation
