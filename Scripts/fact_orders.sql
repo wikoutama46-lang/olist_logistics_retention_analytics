@@ -1,6 +1,5 @@
---DROP VIEW fact_orders;
---
---CREATE OR REPLACE VIEW fact_orders AS
+DROP VIEW fact_orders;
+CREATE OR REPLACE VIEW fact_orders AS
 
 SELECT 
     o.order_id,
