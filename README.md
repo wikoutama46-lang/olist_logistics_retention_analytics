@@ -11,9 +11,14 @@ The analytical techniques used include delivery deviation analysis and the segme
 📄 Click [here](Scripts/) to view the SQL scripts.
 
 📊 Click [here](dashboard.pbix) to view the Power BI dashboard.
+### Logistics
+![Dashboard Overview Logistics](dashboard_logistics.png)
 
-[Data Structure Overview](#data-structure-overview)
+### Churn Rate
+![Dashboard Overview Churn Rate](dashboard_churnrate.png)
+
 ## Data Structure Overview
+![Data Structure Overview](/images/database_schema.png)
 
 
 
@@ -23,6 +28,7 @@ The analytical techniques used include delivery deviation analysis and the segme
 
 
 ## Insights Deep Dive
+### A. Apakah keterlambatan mempengaruhi rating terhadap Olist?
 ![Scatterplot All](/images/scatterplot(all).png)
 ![Total Order All](/images/total_order.png)
 ### Top Two State (SP and RJ)
@@ -44,10 +50,21 @@ Namun January juga memiliki total order yang tinggi hampir sama dengan bulan Feb
 ![alt text](/images/distance_(rj).png) 
 - **Pada shipping limit days yang diberikan pada seller justru tidak memberikan korelasi apakah deadline yang sempit mempengaruhi late delivery rate**. Hasilnya fluktuatif dan Late delivery rate tertinggi tertuju pada 6 hari shipping limit days dengan total order tertinggi (2406), ditemukan pada hari rentang 6 hari tersebut kategori jarak interprovincial dan volume dari product menjadi faktor kontribusi yang cukup besar.
 ![alt text](/images/limit_(rj).png)
-- Late delivery rate dari kategori size paling tertinggi jatuh kepada Large dan Extra Large (14.7% dan 14.6%), dengan total order 1942 dan 364 pada tahun 2018. Mengindikasikan kemungkinan bahwa Late Delivery Rate yang tinggi bisa berasal dari seller yang kesulitan dalam mempersiapkan barang bervolume besar sehingga terlambat mengirimkan pesanan. <br>
-Disisi lain pada chart Weight justru hasilnya bervariasi, kategori Heavy memiliki kontribusi paling besar pada Late Delivery Rate sebesar 15.4% tapi dengan total order 629 saja pada tahun 2018. <br> 
-Temuan yang bisa terlihat disini adalah bahwa ada blank pada chart keduanya, dan sama-sama memiliki Late Delivery Rate 10.9% dan total order 64 pada tahun 2018, berarti ada 64 total order yang tidak tercatat karena sistem atau dari seller sendiri yang tidak mencantumkan ukuran dan berat.
+- **Late delivery rate dari kategori size paling tertinggi jatuh kepada Large dan Extra Large (14.7% dan 14.6%)**, dengan total order 1942 dan 364 pada tahun 2018. Mengindikasikan kemungkinan bahwa Late Delivery Rate yang tinggi bisa berasal dari seller yang kesulitan dalam mempersiapkan barang bervolume besar sehingga terlambat mengirimkan pesanan. <br>
+Disisi lain pada **chart Weight justru hasilnya bervariasi**, kategori Heavy memiliki kontribusi paling besar pada Late Delivery Rate sebesar 15.4% tapi dengan total order 629 saja pada tahun 2018. <br> 
+Temuan yang bisa terlihat disini adalah bahwa ada **blank pada chart keduanya**, dan sama-sama memiliki Late Delivery Rate 10.9% dan total order 64 pada tahun 2018, berarti ada 64 total order yang tidak tercatat karena sistem atau dari seller sendiri yang tidak mencantumkan ukuran dan berat.
 ![Volume and Weight RJ](/images/volume_and_weight_(rj).png)
 - **Sports Leisure memiliki Late Delivery Rate tertinggi**, berdasarkan top 5 kategori product dengan total order tertinggi kategori produk sports leisure mengalami keterlambatan paling tinggi, dengan nilai 18.6% diikuti Bed bath Table 16.4% dan Computers Accessories 15.5%. Dampaknya pada rating cukup tinggi hingga 72.41% pada tahun 2018.
 ![Product RJ](/images/product_(rj).png)
+
+### Apakah ada indikasi churn rate? 
+
 ## Recommendation
+### 1. Logistics
+- **Seller harus mempersiapkan stok mereka pada kuartal awal**, karena ada lonjakan tinggi pada total order di periode tersebut. **Optimisasi gudang**, taruh product terlaris di tempat yang mudah dijangkau, jika kapasitas gudang sudah penuh tingkatkan ruang penyimpanan ekstra atau siapkan stok darurat. **Berikan pelatihan dan atur jadwal shift yang adaptif** saat menangani operasional dan pelayanan terhadap pelanggan mengenai SOP pada masa puncak. **Beritahu pelanggan secara transparan terkait keterlambatan**, untuk menjaga komunikasi dengan para pelanggan
+- **Gunakan strategi Multiwarehouse atau Distributed Fulfillment** guna mengatasi pesanan di luar state, tingkatkan gudang-gudang dengan lokasi strategis yang memiliki order tinggi, dengan strategi ini lead-timenya jauh lebih rendah, meminimalisir kerusakan product, dan meningkatkan on-time delivery rate. **Tingkatkan juga akurasi estimasi yang diberikan sistem**, pelanggan tidak akan merasa tertipu jika estimasi yang diberikan ternyata tidak realistis.
+- **Lakukan penulusuran untuk mengatasi kekosongan pada size/volume dan weight pada product**, kemungkinan berasal dari sistem atau seller yang tidak mencamtumkannya. **Lakukan segmentasi dan SLA yang akurat pada size/volume**, karena ada pola pada size/volume sebagai penyebab keterlambatan. Pihak operasional Olist bisa melakukan segmentasi pada barang berdasarkan size/volume mereka, lalu berikan SLA yang sesuai dengan berdasarkan tingkatnya.
+- **Lakukan Root Cause Analysis** pada **kategori product-product dengan kontribusi late delivery rate yang tinggi** dibanding dengan kategori product lainnya. <br> 
+Lakukan Juga pada **kategori distance local** yang late delivery ratenya cukup tinggi meskipun ada bias pada sample ini tetap bisa menjadi perhatian.
+
+
