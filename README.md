@@ -1,4 +1,99 @@
-<p align="center"> <img src="/images/" width="300">
+![Olist Logo](/images/logo.png)
+
+# Olist Company Analysis
+## Background and Overview
+Olist is a Brazilian e-commerce company that partners with sellers by helping them sell their products on a single platform with a robust system. This project analyzes two things: identifying the fairly high Late Delivery Rate and whether it affects Olist's rating, and the second analysis examines indications of Churn Rate, with the assumption that customers who have not made a purchase within 90 days are considered churned. The scope of the analysis covers the dataset's most recent year, 2018.
+
+Several key metrics used:
+- Late Delivery Rate, as the primary figure in the logistics analysis
+- On-Time Delivery Rate, to compare on-time versus late deliveries
+- Late Delivery Impact Rate, the percentage of how much delays affect Olist's rating
+- Churn Rate, measuring the percentage of customers who no longer make a purchase
+- Repeat Purchase Rate, a supporting percentage for Churn Rate
+
+
+📄 Click [here](Scripts/) to view the SQL scripts.
+
+📊 Click [here](dashboard.pbix) to view the Power BI dashboard.
+### Logistics
+![Dashboard Overview Logistics](/images/logistics/dashboard_overview_logistics.png)
+
+### Churn Rate
+![Dashboard Overview Churn Rate](/images/churnrate/dashboard_overview_churn_rate.png)
+
+## Data Structure Overview
+![Data Structure Overview](/images/database_schema.png)
+
+
+
+## Executive Summary 
+- **Sellers should prepare their stock in the early quarter**, the data shows the highest surge in total orders in Qtr 1 and Qtr 2 in State SP (highest Total Order of all states) and State RJ (highest Late Delivery Rate). 
+- **Conduct an investigation to address the gaps in size/volume and weight data for products**, likely originating from the system or from sellers who did not enter it. 
+- **Carry out accurate segmentation and SLA for size/volume**, since there is a pattern showing size/volume as a cause of delays. Olist's operations team can segment items based on their size/volume, then assign an SLA suited to each level.
+- **Resolve the issue related to Freight Value**; Olist shows indications of a fairly high Churn Rate in several of its top states, caused by high Freight Value in those states. Olist could set a price threshold on products for customers to qualify for free shipping.
+- **The marketing team should build a strong Loyalty Program** to encourage customers to make repeat purchases.
+
+## Insights Deep Dive
+### A. Does the delay affect Olist's rating?
+![Scatterplot All](/images/logistics/scatterplot(all).png)
+![Total Order All](/images/logistics/total_order.png)
+
+#### a. State SP <br>
+![SP](/images/logistics/sp.png) <br>
+This state is within a safe range; as the state with the highest total orders (23.33K), its late delivery rate is fairly low at only 5%. <br> <br>
+Olist's Logistics Condition in State SP, 2018:
+![Overview Dashboard](/images/logistics/overview_dashboard_(sp).png) <br>
+#### b. State RJ <br>
+![alt-text](/images/logistics/rj.png) <br> 
+**RJ has the highest late delivery rate and the greatest impact on low ratings among all existing states**. <br> <br>
+Olist's Logistics Condition in State RJ, 2018:
+![Overview Dashboard](/images/logistics/overview_dashboard_(rj).png) <br> <br>
+Some findings include:
+- On average in 2018, compared to the overall Late Delivery Rate across all states of 7.73%, RJ reached 13.74% in the same period. **RJ's Late Delivery Rate rose from the first month to February (34.0%) and March (34.5%), coinciding with a surge in orders.** <br>
+However, January also had a high total order count, nearly matching February and March. The late delivery rate then dropped in the 2nd quarter with fairly significant fluctuation, and in July it rose to 2.4% and rose again this month to 5.8%.
+![alt text](/images/logistics/combo_chart_(sp).png)
+- **Distance affects the late delivery rate for customers in state RJ**; sellers located in a different state from the customer have the highest late delivery rate (14.5%) with a total of 5,791 orders, followed by **local sellers, who actually have a late delivery rate as high as 10.4%, though with only 144 total orders compared to 415 total orders for regional sellers,** indicating potential bias from a small sample. Even so, further identification is still needed to explain why local sellers have a higher late delivery rate than regional sellers. 
+![alt text](/images/logistics/distance_(rj).png) 
+- **The shipping limit days given to sellers, in fact, show no correlation with whether a tighter deadline affects the late delivery rate**. The results fluctuate, with the highest late delivery rate occurring at a 6-day shipping limit, which also has the highest total orders (2,406); within that 6-day range, interprovincial distance and product volume were found to be significant contributing factors.
+![alt text](/images/logistics/limit_(rj).png)
+- **The highest late delivery rate by size category falls under Large and Extra Large (14.7% and 14.6%)**, with 1,942 and 364 total orders respectively in 2018. This indicates that the high Late Delivery Rate may stem from sellers struggling to prepare high-volume items, causing delayed shipments. <br>
+On the other hand, the **Weight chart shows more varied results**; the Heavy category contributes the most to the Late Delivery Rate at 15.4%, but with only 629 total orders in 2018. <br> 
+A notable finding here is that there is a **blank entry in both charts**, which together account for a Late Delivery Rate of 10.9% and 64 total orders in 2018, meaning 64 total orders were not recorded because the system, or the sellers themselves, did not include the size and weight.
+![Volume and Weight RJ](/images/logistics/volume_and_weight_(rj).png)
+- **Sports Leisure has the highest Late Delivery Rate**; among the top 5 categories by total order, the Sports Leisure product category experienced the highest rate of delays, at 18.6%, followed by Bed Bath Table at 16.4% and Computers Accessories at 15.5%. Its impact on ratings is fairly significant, reaching 72.41% in 2018.
+![Product RJ](/images/logistics/product_(rj).png)
+
+### B. Are there indications of Churn Rate? 
+![Dashboard Oveview Top Five](/images/churnrate/dashboard_overview_top_five.png)
+Last year, the Repeat Purchase Rate dropped by -16.3%, with a gap from target of -85.4%, while total customers rose significantly compared to the previous year by 147.8%, although still below target with a percentage gap of -19.9%. 
+<br> <br>
+Below are some of the findings I found:
+
+- **State RJ is an outlier** <br>
+State RJ's late delivery rate does not affect its Repeat Purchase Rate; the cause of its high Late Delivery Rate has already been discussed earlier.
+![Scatterplot 1 of Top Five](/images/churnrate/scatterplot_1_top_five.png)
+
+- **State SP has the lowest Freight Value** and the smallest Churn Rate among the top 5 states by order volume; the low shipping cost stems from the efficiency of Olist's logistics operations, which makes sense given that state SP contributes significantly to overall orders. **The other states show a pattern suggesting Freight may influence Churn Rate**.
+![Scatterplot 2 of Top Five](/images/churnrate/scatterplot_2_top_five.png)
+- **Seasonal patterns are a major factor in Olist's Churn Rate**; it is very low in the first quarter, which is the peak of the Repeat Purchase Rate (2.09%), then declines in the second and third quarters. This strongly suggests that Olist customers lack loyalty to make repeat purchases. 
+![Product of Top Five](/images/churnrate/product_top_five.png)
+
+
+
+## Recommendation
+### 1. Logistics
+- **Sellers should prepare their stock in the early quarter**, since there is a high surge in total orders during that period. **Optimize the warehouse** by placing best-selling products in easily accessible locations; if warehouse capacity is full, add extra storage space or prepare emergency stock. **Provide training and arrange adaptive shift schedules** when handling operations and customer service regarding SOPs during peak periods. **Inform customers transparently about delays**, to maintain communication with customers.
+- **Use a Multiwarehouse or Distributed Fulfillment strategy** to handle orders outside the state, by upgrading warehouses in strategic locations with high order volumes; with this strategy, lead time is much lower, product damage is minimized, and on-time delivery rate improves. **Also improve the accuracy of the estimates provided by the system**, so customers do not feel misled when the given estimate turns out to be unrealistic.
+- **Conduct an investigation to address the gaps in size/volume and weight data for products**, likely originating from the system or from sellers who did not enter it. **Carry out accurate segmentation and SLA for size/volume**, since there is a pattern showing size/volume as a cause of delays. Olist's operations team can segment items based on their size/volume, then assign an SLA suited to each level.
+- **Conduct a Root Cause Analysis** on **product categories that contribute to a high late delivery rate** compared to other product categories. <br> 
+Also conduct one on the **local distance category**, whose late delivery rate is fairly high; although there is bias in this sample, it still deserves attention.
+
+
+### 2. Churn Rate
+- **Olist could invest in resolving the issue related to Freight Value**, which is a cause of Churn Rate in several of its top states, such as by **setting a Freight Value Threshold** that gives customers a price cutoff to qualify for free shipping.
+- **Build a strong Loyalty Program**, based on data showing a seasonal pattern in product purchases. Olist should design a Loyalty program that can bring customers back. For example, offering free shipping to customers who are loyal, repeat customers.
+
+<!-- <p align="center"> <img src="/images/" width="300">
 </p>
 
 # Olist Company Analysis
@@ -92,4 +187,4 @@ Lakukan juga pada **kategori jarak lokal** yang late delivery ratenya cukup ting
 
 ### 2. Churn Rate
 - **Olist bisa berinvestasi untuk memecahkan masalah terkait Freight Value** yang menjadi penyebab Churn Rate di beberapa State teratasnya seperti dengan **menetapkan Threshold Freight Value** yang mana memberi batas harga produk tertentu untuk pelanggan mendapatkan gratis ongkir.
-- **Buat Program Loyalty yang kuat**, berdasarkan data yang menunjukkan pola musiman pada pembelian produk. Olist harus merancang program Loyalty yang bisa mendatangkan pelanggan lagi. Contoh seperti memberi gratis ongkir pada pelanggan yang adalah pelanggan setia.
+- **Buat Program Loyalty yang kuat**, berdasarkan data yang menunjukkan pola musiman pada pembelian produk. Olist harus merancang program Loyalty yang bisa mendatangkan pelanggan lagi. Contoh seperti memberi gratis ongkir pada pelanggan yang adalah pelanggan setia. -->
