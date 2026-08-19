@@ -15,11 +15,11 @@ Several key metrics used:
 📄 Click [here](Scripts/) to view the SQL scripts.
 
 📊 Click [here](dashboard.pbix) to view the Power BI dashboard.
-### Logistics
-![Dashboard Overview Logistics](/images/logistics/dashboard_overview_logistics.png)
+### Logistics: Dashboard Overview
+![Dashboard Overview Logistics](/images/logistics/dashboard_overview_logistics.gif)
 
-### Churn Rate
-![Dashboard Overview Churn Rate](/images/churnrate/dashboard_overview_churn_rate.png)
+### Churn Rate: Dashboard Overview
+![Dashboard Overview Churn Rate](/images/churnrate/dashboard_overview_churn_rate.gif)
 
 ## Data Structure Overview
 ![Data Structure Overview](/images/database_schema.png)
